@@ -7,6 +7,7 @@
     <style>
         body{
             padding:5%;
+            background: linear-gradient(45deg,#041cf1,#030152d3,#010129d3);;
         }
         
         /*For the SCISSORS button*/
@@ -60,17 +61,19 @@
 
 
 <!--For the buttons the player will press (Rock, Paper, Scissors) -->
-<div style='display:grid;grid-template-columns:33% 33% 33%;'>
-<button id="rock" class="zzz" onclick="rock()">Rock</button>
-<button id="paper" class="aaa" onclick="paper()">Paper</button>
-<button id="scissors" class="yyy" onclick="scissors()">Scissors</button>
+<div style="display: flex;flex-direction: column;">
+    <div><h1 style="font-size: 2vw;text-align: center;color:white;background: linear-gradient(45deg,#fd012b,#7e071b);">Choose One</h1></div>
+    <div style='display:grid;grid-template-columns:33% 33% 33%;'>
+    <button id="rock" class="zzz" onclick="rock()">Rock</button>
+    <button id="paper" class="aaa" onclick="paper()">Paper</button>
+    <button id="scissors" class="yyy" onclick="scissors()">Scissors</button>
+    </div>
 </div>
 
 
 
-
 <!--The interactive console-->
-<div style="background-color: black; color: white; border: solid; display: flex; flex-direction: column; align-items: center; border-radius: 5%; padding-top: 5%;">
+<div style="background-color: black; color: white; border: solid; display: flex; flex-direction: column; align-items: center; border-radius: 5vw; padding-top: 5%;">
     
     <!--For the console that would display the player's choice -->
     <p>PLAYER</p>
