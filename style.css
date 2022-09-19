@@ -1,0 +1,73 @@
+body{
+    height: 100vh;
+    padding:5%;
+    background: linear-gradient(45deg,#041cf1,#030152d3,#010129d3);;
+}
+
+/*For the SCISSORS button*/
+.yyy{
+    background-color: silver;
+    color: black;
+}
+
+/*For the ROCK button*/
+.zzz{
+    background-color:rgb(190, 17, 17);
+    color: white;
+}
+
+/*For the PAPER button*/
+.aaa{
+    height: 3vh;
+    background-color: wheat;
+    color:black
+}
+
+/*For the console that would display computer's choice*/
+#display2{
+    position: relative;
+    border: solid;
+    border-radius:15%;
+    border-color: white;
+    min-width: 100px;
+    width: 20vw;
+    left: 0;
+    height: 10vh; 
+    text-align: center; 
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+/*For the console that would display the player's choice*/
+#display{
+    position: relative;
+    border: solid;
+    border-radius:3vw;
+    border-color: white; 
+    min-width: 100px; 
+    width: 20vw;
+    height: 10vh; 
+    text-align: center; 
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+#player{
+    position: absolute;
+    left:14%
+}
+#playerii{
+    position: absolute;
+    right:10%;
+}
+@media(max-width:450px) {
+    #display{
+        top: 900px;
+    }
+}
