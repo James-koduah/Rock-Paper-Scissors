@@ -23,15 +23,28 @@ body{
     color:black
 }
 
+
+#main{
+    width: 90vw;
+    height: 80vh;
+    background-color: black;
+    color: white; 
+    border: solid; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    border-radius: 5vw; 
+    padding-top: 5%;
+}
+
 /*For the console that would display computer's choice*/
 #display2{
     position: relative;
     border: solid;
-    border-radius:15%;
+    border-radius:3vw;
     border-color: white;
     min-width: 100px;
     width: 20vw;
-    left: 0;
     height: 10vh; 
     text-align: center; 
     padding-bottom: 10px;
@@ -66,8 +79,9 @@ body{
     position: absolute;
     right:10%;
 }
-@media(max-width:450px) {
-    #display{
-        top: 900px;
+
+@media (max-width:450px) {
+    #main{
+        height: 100vh;
     }
 }
