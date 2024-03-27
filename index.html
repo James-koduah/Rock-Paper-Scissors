@@ -1,56 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>rock paper siscors</title>
-    <script src="app.js"></script>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Sisscors</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<script src="app.js" charset="utf-8"></script>
-
-
-<!--For the buttons the player will press (Rock, Paper, Scissors) -->
-<div id="firstItem" style="display: flex;flex-direction: column;">
-    <div><h1 style="font-size: 2vw;text-align: center;color:white;background: linear-gradient(45deg,#fd012b,#7e071b);">Choose One</h1></div>
-    <div style='display:grid;grid-template-columns:33% 33% 33%;'>
-    <button id="rock" class="zzz" onclick="rock()">Rock</button>
-    <button id="paper" class="aaa" onclick="paper()">Paper</button>
-    <button id="scissors" class="yyy" onclick="scissors()">Scissors</button>
-    </div>
-</div>
-
-
-
-<!--The interactive console-->
-<div id="main" >
-    
-    <!--For the console that would display the player's choice -->
-    <p>PLAYER</p>
-    <div id="display">
-        <h1 id="do"></h1>
-    </div>   
-    <p id="last"></p><br>
-
-
-<button id="yes" onclick="final()">PLAY</button><br>
-    
-    <!--For the console that would display the computer's choice-->
-    <p>COMPUTER</p>
-    <div id="display2">
-        <h1 id="to"></h1>
-    </div>
-    <br>
-
-    
-    <!--the text that will tell you wheather you have won or lost-->
-    <h3 id="vvv">PLAY</h3>
-
-    
-    <!--the scores-->
-    <p id="player">PLAYER <br>SCORE</p>
-    <p id="playerii" >COMPUTER <br>SCORE</p>
-</div>
-
+    <section id="title">
+        <div id="title_player">Select</div>
+        <div id="title_board">
+            <div class="title_div" id="player_score">0</div>
+            <div class="title_div" id="hyphen">-</div>
+            <div class="title_div" id="computer_score">0</div>
+        </div>
+        <div id="title_computer"></div>
+    </section>
+    <section id="game">
+        <div id="player">
+            <div class="option_cover">
+                <div class="option" data-option="rock"><img src="/images/fist.svg" alt=""></div>
+            </div>
+            <div class="option_cover">
+                <div class="option" data-option="paper"><img src="/images/palm.svg" alt=""></div>
+            </div>
+            <div class="option_cover">
+                <div class="option" data-option="scissors"><img src="/images/scissors.svg" alt=""></div>
+            </div>
+        </div>
+        <div id="game_board">
+            <div id="announce"></div>
+            <div id="board">
+                <div id="player_option"></div>
+                <div id="computer_option"></div>
+            </div>
+        </div>
+        <div id="computer">
+            <div class="option_cover">
+                <div class="computer_option" data-option="rock"><img src="/images/fist.svg" alt=""></div>
+            </div>
+            <div class="option_cover">
+                <div class="computer_option" data-option="paper"><img src="/images/palm.svg" alt=""></div>
+            </div>
+            <div class="option_cover">
+                <div class="computer_option" data-option="scissors"><img src="/images/scissors.svg" alt=""></div>
+            </div>
+        </div>
+    </section>
+    <script src="app.js"></script>
 </body>
 </html>

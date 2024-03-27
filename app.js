@@ -1,165 +1,144 @@
-var answer = '';
-var pl=0;//pl is the player score(gets updated every time the game is played).
-var cu=0;//cu is the computer score(gets updated every time the game is played).
+function setup(){
+    let player_option = document.getElementById('player_option')
+    let player_option_pos = player_option.getBoundingClientRect()
+    let computer_option = document.getElementById('computer_option')
+    let computer_option_pos = computer_option.getBoundingClientRect()
 
-//For when you choose the button Scissors (player display changes).
-function scissors(){
-    let ii= document.getElementById('do');
-    let ee= document.getElementById('last');
-    let tt= document.getElementById('scissors');
-    let dis= document.getElementById('display');
-    ii.innerHTML = tt.innerHTML;
-    
-    ee.innerHTML= 'Are you sure you want scissors';
-    dis.className= tt.className;
-    answer='scissors';
+    let player_choice;
+    let computer_choice;
+    let computer_options = document.getElementsByClassName('computer_option')
+    let player_options = document.getElementsByClassName('option')
+    let player_score = 0;
+    let computer_score = 0;
+    let player_score_dis = document.getElementById('player_score')
+    let computer_score_dis = document.getElementById('computer_score')
+    let announce = document.getElementById('announce')
+
+
+    function clearscreen(){
+        let all = document.getElementsByClassName('float')
+        for (let elem of all){
+            elem.style.top = '1000px'
+            setTimeout(() => {
+                elem.remove()
+            }, 150);
+        }
+    }
+
+    for (let elem of player_options){
+        let pos = elem.getBoundingClientRect()
+        elem.addEventListener('click', ()=>{
+            let fresh = elem.cloneNode(true)
+            player_choice = fresh.dataset.option
+            clearscreen()
+            fresh.classList.add('float')
+            fresh.style.position = 'fixed'
+            fresh.style.top = `${pos.y}px`
+            fresh.style.left = `${pos.x}px`
+            document.body.appendChild(fresh)
+            computer()
+            setTimeout(() => {
+                fresh.style.top = `${player_option_pos.y}px`
+                fresh.style.left = `${player_option_pos.x}px`
+            }, 100);
+        })
+    }
+
+    function computer(){
+        const randomInteger = Math.floor(Math.random() * 3);
+        let elem = computer_options[randomInteger]
+        let pos = elem.getBoundingClientRect()
+        let fresh = elem.cloneNode(true)
+        computer_choice = fresh.dataset.option
+        fresh.classList.add('float')
+        fresh.style.position = 'fixed'
+        fresh.style.top = `${pos.y}px`
+        fresh.style.left = `${pos.x}px`
+        document.body.appendChild(fresh)
+        setTimeout(() => {
+            fresh.style.top = `${computer_option_pos.y}px`
+            fresh.style.left = `${computer_option_pos.x}px`
+            game()
+        }, 50);
+    }
+
+    function win(who){
+        if (who === 'player'){
+            player_score += 1;
+            player_score_dis.innerText = player_score;
+        }
+        if (who === 'computer'){
+            computer_score += 1;
+            computer_score_dis.innerText = computer_score
+        }
+    }
+
+    function game(){
+        if (player_choice === 'rock' && computer_choice === 'rock'){
+            console.log('draw')
+            announce.innerHTML = 'Draw'
+        }
+        if (player_choice === 'rock' && computer_choice === 'paper'){
+            win('computer')
+            announce.innerHTML = 'You Lose<br>Paper wraps your Rock'
+        }
+        if (player_choice === 'rock' && computer_choice === 'scissors'){
+            win('player')
+            announce.innerHTML = 'You Win<br>Rock smash Scissors'
+        }
+
+        if (player_choice === 'paper' && computer_choice === 'paper'){
+            console.log('draw')
+            announce.innerHTML = 'Draw'
+        }
+        if (player_choice === 'paper' && computer_choice === 'scissors'){
+            win('computer')
+            announce.innerHTML = 'You Lose<br>Scissors cuts Paper'
+        }
+        if (player_choice === 'paper' && computer_choice === 'rock'){
+            win('player')
+            announce.innerHTML = 'You Win<br>Paper wraps Rock'
+        }
+
+        if (player_choice === 'scissors' && computer_choice === 'scissors'){
+            console.log('draw')
+            announce.innerHTML = 'Draw'
+        }
+        if (player_choice === 'scissors' && computer_choice === 'rock'){
+            win('computer')
+            announce.innerHTML = 'You Lose<br>Rock Smash Sissors'
+        }
+        if (player_choice === 'scissors' && computer_choice === 'paper'){
+            win('player')
+            announce.innerHTML = 'You Win<br>Scissors cuts Paper'
+        }
+    }
+
+    // for (let elem of computer_options){
+    //     let pos = elem.getBoundingClientRect()
+    //     elem.style.top = `${pos.y}px`
+    //     elem.style.left = `${pos.x}px`
+    //     let moved = false
+    //     elem.addEventListener('click', ()=>{
+    //         let fresh = document.createElement('div')
+    //         fresh.className = 'option_new'
+    //         fresh.style.position = 'fixed'
+    //         fresh.style.top = `${pos.y}px`
+    //         fresh.style.left = `${pos.x}px`
+    //         document.body.appendChild(fresh)
+    //         setTimeout(() => {
+    //             fresh.style.top = `${computer_option_pos.y}px`
+    //             fresh.style.left = `${computer_option_pos.x}px`
+    //             fresh.style.background = 'green'
+    //         }, 100);
+    //     })
+    // }
 }
+setup()
 
-//For when you choose the button Paper (player display changes).
-function paper(){
-    let uu=document.getElementById('do');
-    let ee= document.getElementById('last');
-    let yy= document.getElementById('paper');
-    let dis= document.getElementById('display');
-    uu.innerHTML = yy.innerHTML;
-    ee.innerHTML= 'Are you sure you want paper';
-    dis.className=yy.className;
-    answer='paper';
+
+
+
+function teardown(){
+
 }
-
-//For when you choose the button Rock (player display changes).
-function rock(){
-    let uu=document.getElementById('do');
-    let ee= document.getElementById('last');
-    let yy= document.getElementById('rock');
-    let dis= document.getElementById('display');
-    uu.innerHTML = yy.innerHTML;
-    ee.innerHTML= 'Are you sure you want rock';
-    dis.className=yy.className;
-    answer='rock';
-}
-
-
-
-
-var tt=['rock','paper','scissors'];//tt contains the choices computer has.
-
-//When shuffle is called it shuffle's the array.
-function shuffle(array) {
-    let currentIndex = array.length,  randomIndex;
-  
-    // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-  
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
-  
-    return array;
-  }
-
-//When the play button is pressed.
-function final(){
-    
-    let nn=document.getElementById('vvv');
-    let computer =document.getElementById('display2');
-    let ii= document.getElementById('to');
-    let play= document.getElementById('player');
-    let com= document.getElementById('playerii');
-    
-
-    let rr= document.getElementById('rock');
-    let ss= document.getElementById('scissors');
-    let pp= document.getElementById('paper');
-    let shuf=shuffle(tt);
-    if(answer==''){return nn.innerHTML='PLAY'};
-
-    if(shuf[1]=='rock'){
-        ii.innerHTML=rr.innerHTML;
-        computer.className=rr.className;
-        computer.animate([
-            // keyframes
-            { transform: 'translateX(0px)' },
-            { transform: 'translateX(-15%)' },
-            { transform: 'translateX(15%)'}
-          ], {
-            // timing options
-            duration: 10,
-            iterations: 60
-          })
-        
-    }else if(tt[1]=='paper'){
-        ii.innerHTML=pp.innerHTML;
-        computer.className=pp.className;
-        computer.animate([
-            // keyframes
-            { transform: 'translateX(0px)' },
-            { transform: 'translateX(-15%)' },
-            { transform: 'translateX(15%)'}
-          ], {
-            // timing options
-            duration: 10,
-            iterations: 60
-          })
-          
-    }else if(tt[1]=='scissors'){
-        ii.innerHTML=ss.innerHTML;
-        computer.className=ss.className;
-        computer.animate([
-            // keyframes
-            { transform: 'translateX(0px)' },
-            { transform: 'translateX(-15%)' },
-            { transform: 'translateX(15%)'}
-          ], {
-            // timing options
-            duration: 10,
-            iterations: 60
-          })
-    }
-    //NOT WORKING. REVEIW
-    if(answer==shuf[1]){nn.innerHTML='DRAW! PLAY AGAIN';
-    pl+=0;cu+=0;}
-    if(answer=='rock'&&shuf[1]==='scissors'){
-         nn.innerHTML='SMASHED! YOU WIN';
-         pl+=1;cu+=0;
-    }
-    if(answer=='paper'&&shuf[1]==='rock'){
-         nn.innerHTML='WRAPED HIM! YOU WIN';
-         pl+=1;cu+=0;
-    }
-    if(answer=='scissors'&&shuf[1]==='paper'){
-         nn.innerHTML='CUT INTO PECIES! YOU WIN';
-         pl+=1;cu+=0;
-    }
-    if(answer=='rock'&&shuf[1]==='paper'){
-         nn.innerHTML='HAHA! YOU LOSE';
-         pl+=0;cu+=1;
-    }
-    if(answer=='paper'&&shuf[1]==='scissors'){
-         nn.innerHTML='CUT! YOU LOSE';
-         pl+=0;cu+=1;
-    }
-    if(answer=='scissors'&&shuf[1]==='rock'){
-         nn.innerHTML='😭😭😭😭😭😭 <br> AWW! YOU LOSE';
-         pl+=0;cu+=1;
-    }
-   
-     play.innerHTML=pl;
-     com.innerHTML=cu;
-}
-
-
-
-
-/**Idea for another project.
- Make a webpage that generates random quotes.
- When a button is pressed a new quote is shown on the screen.
- use the shuffle function in this project.
- also make sure that the whole body changes color when a new text is brought on screen
- you can refer to freeCodeCamp and see their project that is similar to this. 
- */
