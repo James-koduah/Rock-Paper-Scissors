@@ -161,3 +161,43 @@ img{
     align-items: center;
     flex-shrink: 0;
 }
+
+@media (max-width: 700px) {
+    #title_player{
+        font-size: 3em;
+    }
+    .title_div{
+        font-size: 8em;
+        align-self: flex-start;
+    }
+    .option_cover{
+        width: 100%;
+    }
+    #player .option_cover{
+        display: flex;
+        justify-content: end;
+    }
+    .option{
+        width: 50px;
+        height: 50px;
+    }
+    .computer_option{
+        width: 50px;
+        height: 50px;
+    }
+
+    #game_board{
+        height: 65%;
+    }
+
+    #board div{
+        width: 50px;
+        height: 50px;
+    }
+    #announce{
+        width: 90%;
+        height: fit-content;
+        padding-bottom: 80px;
+        font-size: 2.3em;
+    }
+}
